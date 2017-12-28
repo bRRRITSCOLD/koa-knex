@@ -1,0 +1,72 @@
+module.exports = [
+  {
+    first_name: 'Dewain',
+    last_name: 'Vockins',
+    email: 'dvockins0@e-recht24.de',
+    address: '801 Schurz Avenue',
+    phone_number: '573-895-4736',
+  },
+  {
+    first_name: 'Bartolemo',
+    last_name: 'Tilbrook',
+    email: 'btilbrook1@google.com.au',
+    address: '154 Beilfuss Avenue',
+    phone_number: '719-166-7828',
+  },
+  {
+    first_name: 'Rudie',
+    last_name: 'Donisthorpe',
+    email: 'rdonisthorpe2@geocities.com',
+    address: '199 Anzinger Court',
+    phone_number: '224-604-9096',
+  },
+  {
+    first_name: 'Nappy',
+    last_name: 'Ploughwright',
+    email: 'nploughwright3@who.int',
+    address: '207 Cody Alley',
+    phone_number: '963-372-9503',
+  },
+  {
+    first_name: 'Ernesta',
+    last_name: 'Lemar',
+    email: 'elemar4@bloglines.com',
+    address: '40 Carpenter Way',
+    phone_number: '506-924-0948',
+  },
+  {
+    first_name: 'Kennett',
+    last_name: 'Ibbitt',
+    email: 'kibbitt5@mlb.com',
+    address: '5 Sachtjen Trail',
+    phone_number: '943-726-4887',
+  },
+  {
+    first_name: 'Janeen',
+    last_name: 'Tows',
+    email: 'jtows6@ted.com',
+    address: '667 Acker Drive',
+    phone_number: '233-836-1113',
+  },
+  {
+    first_name: 'Fred',
+    last_name: 'Tedridge',
+    email: 'ftedridge7@360.cn',
+    address: '65189 Sloan Hill',
+    phone_number: '223-661-0222',
+  },
+  {
+    first_name: 'Sibel',
+    last_name: 'Orpen',
+    email: 'sorpen8@angelfire.com',
+    address: '00285 Kennedy Point',
+    phone_number: '631-849-7325',
+  },
+  {
+    first_name: 'Gerty',
+    last_name: 'MacLeese',
+    email: 'gmacleese9@rambler.ru',
+    address: '80018 Red Cloud Road',
+    phone_number: '630-509-5767',
+  }
+];
