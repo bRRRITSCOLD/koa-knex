@@ -1,14 +1,14 @@
-$ const customer = data.customer[0];
+$ const customers = data.customers;
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Customer</title>
+        <title>Customers</title>
     </head>
     <body>
       <div>
-        <ul>
+        <ul for(customer in customers)>
           <li>Name: ${customer.first_name + ' ' + customer.last_name}</li>
           <li>Email: ${customer.email}</li>
           <li>Address: ${customer.address}</li>

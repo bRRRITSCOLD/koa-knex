@@ -17,7 +17,6 @@ const singleCustomerTimestampTemplate = require('./templates/customer_timestamp.
 // ** Explicitly tell router to use marko ** //
 router.use(marko());
 
-
 // Route prefix 'http://domain/api/v1/customers'
 router.prefix('/api/v1/customers')
 

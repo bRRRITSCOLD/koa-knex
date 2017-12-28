@@ -1,14 +1,14 @@
-$ const invoice = data.invoice[0];
+$ const invoices = data.invoices;
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Invoice</title>
+        <title>Invoices</title>
     </head>
     <body>
       <div>
-        <ul>
+        <ul for(invoice in invoices)>
           <li>Customer ID: ${invoice.customer_id}</li>
           <li>Line-Items Total: ${invoice.line_items_total}</li>
           <li>Additional Fees: ${invoice.additional_fees}</li>

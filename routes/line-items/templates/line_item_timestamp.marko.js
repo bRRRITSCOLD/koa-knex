@@ -16,21 +16,23 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html><head><title>Line Item Timestamp</title></head><body>");
+  const timestamp = data.timestamp[0];
+
+  out.w("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Line Item Timestamps</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<p>Line Item ID: " +
-    marko_escapeXml(data.timestamp[0].line_item_id) +
-    "</p><p>Created At: " +
-    marko_escapeXml(data.timestamp[0].created_at) +
-    "</p><p>Updated At: " +
-    marko_escapeXml(data.timestamp[0].updated_at) +
-    "</p>");
+  out.w("<div><ul><li>Line Item ID: " +
+    marko_escapeXml(timestamp.line_item_id) +
+    "</li><li>Created on: " +
+    marko_escapeXml(timestamp.created_at) +
+    "</li><li>Last Updated: " +
+    marko_escapeXml(timestamp.updated_at) +
+    "</li></ul></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "7");
+  await_reorderer_tag({}, out, __component, "10");
 
   out.w("</body></html>");
 }

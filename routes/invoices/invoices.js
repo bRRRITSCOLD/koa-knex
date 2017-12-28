@@ -12,6 +12,7 @@ const tables = require('../../db/tables');
 const marko = require('koa-marko');
 
 // ** Marko template/view declerations ** //
+const allInvoicesTemplate = require('./templates/invoices.marko');
 const singleInvoiceTemplate = require('./templates/invoice.marko');
 
 // ** Explicitly tell router to use marko ** //
@@ -31,10 +32,10 @@ router.get('/', async (ctx) => {
       selectReference
     );
 
-    ctx.body = {
+    ctx.render(allInvoicesTemplate, {
       status: 'success',
       invoices: dataInvoices
-    };
+    });
   } catch (err) {
     console.log(err)
   }

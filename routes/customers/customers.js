@@ -10,6 +10,7 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+const allCustomersTemplate = require('./templates/customers.marko');
 const singleCustomerTemplate = require('./templates/customer.marko');
 
 
@@ -32,10 +33,10 @@ router.get('/', async (ctx) => {
       selectReference
     );
 
-    ctx.body = {
+    ctx.render(allCustomersTemplate, {
       status: 'success',
       customers: dataCustomers
-    };
+    });
   } catch (err) {
     console.log(err)
   }

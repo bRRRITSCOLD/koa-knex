@@ -1,8 +1,18 @@
+$ const timestamp = data.timestamp[0];
+
 <!doctype html>
-html
-    head
-        title -- Invoice Timestamp
-    body
-        p -- Invoice ID: ${data.timestamp[0].invoice_id}
-        p -- Created At: ${data.timestamp[0].created_at}
-        p -- Updated At: ${data.timestamp[0].updated_at}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Invoice Timestamps</title>
+    </head>
+    <body>
+      <div>
+        <ul>
+          <li>Invoice ID: ${timestamp.invoice_id}</li>
+          <li>Created on: ${timestamp.created_at}</li>
+          <li>Last Updated: ${timestamp.updated_at}</li>
+        </ul>
+      </div>
+    </body>
+</html>

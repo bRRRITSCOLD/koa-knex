@@ -10,6 +10,7 @@ const tables = require('../../db/tables');
 
 const marko = require('koa-marko');
 
+const allProductsTemplate = require('./templates/products.marko');
 const singleProductTemplate = require('./templates/product.marko');
 
 router.use(marko());
@@ -28,10 +29,10 @@ router.get('/', async (ctx) => {
       selectReference
     );
 
-    ctx.body = {
+    ctx.render(allProductsTemplate, {
       status: 'success',
       products: dataProducts
-    };
+    });
   } catch (err) {
     console.log(err)
   }

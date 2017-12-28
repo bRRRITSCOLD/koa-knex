@@ -16,23 +16,25 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html><head><title>Customer</title></head><body>");
+  const customer = data.customer[0];
+
+  out.w("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Customer</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<p>Full Name: " +
-    marko_escapeXml((data.customer[0].first_name + " ") + data.customer[0].last_name) +
-    "</p><p>Email: " +
-    marko_escapeXml(data.customer[0].email) +
-    "</p><p>Address: " +
-    marko_escapeXml(data.customer[0].address) +
-    "</p><p>Phone Number: " +
-    marko_escapeXml(data.customer[0].phone_number) +
-    "</p>");
+  out.w("<div><ul><li>Name: " +
+    marko_escapeXml((customer.first_name + " ") + customer.last_name) +
+    "</li><li>Email: " +
+    marko_escapeXml(customer.email) +
+    "</li><li>Address: " +
+    marko_escapeXml(customer.address) +
+    "</li><li>Phone Number: " +
+    marko_escapeXml(customer.phone_number) +
+    "</li></ul></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "8");
+  await_reorderer_tag({}, out, __component, "11");
 
   out.w("</body></html>");
 }

@@ -16,23 +16,25 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html><head><title>Product</title></head><body>");
+  const product = data.product[0];
+
+  out.w("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Product</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<p>Name: " +
-    marko_escapeXml(data.product[0].name) +
-    "</p><p>Cost: " +
-    marko_escapeXml(data.product[0].cost) +
-    "</p><p>Price: " +
-    marko_escapeXml(data.product[0].price) +
-    "</p><p>Category: " +
-    marko_escapeXml(data.product[0].category) +
-    "</p>");
+  out.w("<div><ul><li>Name: " +
+    marko_escapeXml(product.name) +
+    "</li><li>Cost: " +
+    marko_escapeXml(product.cost) +
+    "</li><li>Price: " +
+    marko_escapeXml(product.price) +
+    "</li><li>Category: " +
+    marko_escapeXml(product.category) +
+    "</li></ul></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "8");
+  await_reorderer_tag({}, out, __component, "11");
 
   out.w("</body></html>");
 }

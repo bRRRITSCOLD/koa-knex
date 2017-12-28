@@ -16,25 +16,27 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<!doctype html><html><head><title>Line Item</title></head><body>");
+  const lineItem = data.lineItem[0];
+
+  out.w("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Line Item</title></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<p>Invoice ID: " +
-    marko_escapeXml(data.lineItem[0].invoice_id) +
-    "</p><p>Product ID: " +
-    marko_escapeXml(data.lineItem[0].product_id) +
-    "</p><p>Quantity: " +
-    marko_escapeXml(data.lineItem[0].quantity) +
-    "</p><p>Discount: " +
-    marko_escapeXml(data.lineItem[0].discount) +
-    "</p><p>Total: " +
-    marko_escapeXml(data.lineItem[0].total) +
-    "</p>");
+  out.w("<div><ul><li>Invoice ID: " +
+    marko_escapeXml(lineItem.invoice_id) +
+    "</li><li>Product ID: " +
+    marko_escapeXml(lineItem.product_id) +
+    "</li><li>Quantity: " +
+    marko_escapeXml(lineItem.quantity) +
+    "</li><li>Discount: " +
+    marko_escapeXml(lineItem.discount) +
+    "</li><li>Total: " +
+    marko_escapeXml(lineItem.total) +
+    "</li></ul></div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "9");
+  await_reorderer_tag({}, out, __component, "12");
 
   out.w("</body></html>");
 }
