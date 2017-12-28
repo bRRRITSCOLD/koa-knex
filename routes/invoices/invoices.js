@@ -8,6 +8,15 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+// ** Marko decleration ** //
+const marko = require('koa-marko');
+
+// ** Marko template/view declerations ** //
+const singleInvoiceTemplate = require('./templates/invoice.marko');
+
+// ** Explicitly tell router to use marko ** //
+router.use(marko());
+
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/invoices')
 
@@ -48,10 +57,10 @@ router.get('/:id', async (ctx) => {
     );
 
     if (dataInvoice.length) {
-      ctx.body = {
+      ctx.render(singleInvoiceTemplate, {
         status: 'success',
         invoice: dataInvoice
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

@@ -1,0 +1,10 @@
+<!doctype html>
+html
+    head
+        title -- Invoice
+    body
+        p -- Customer ID: ${data.invoice[0].id}
+        p -- Line Items Total: ${data.invoice[0].line_items_total}
+        p -- Additional Fees: ${data.invoice[0].additional_fees}
+        p -- Tax Rate: ${data.invoice[0].tax_rate}
+        p -- Sub Total: ${data.invoice[0].sub_total}

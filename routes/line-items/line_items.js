@@ -8,6 +8,13 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+
+const marko = require('koa-marko');
+
+const singleLineItemTemplate = require('./templates/line_item.marko');
+
+router.use(marko());
+
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/line-items')
 
@@ -50,10 +57,10 @@ router.get('/:id', async (ctx) => {
     );
 
     if (dataLineItem.length) {
-      ctx.body = {
+      ctx.render(singleLineItemTemplate, {
         status: 'success',
-        customer: dataLineItem
-      };
+        lineItem: dataLineItem
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

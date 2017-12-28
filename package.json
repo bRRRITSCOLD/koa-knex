@@ -18,6 +18,8 @@
     "koa": "*",
     "koa-bodyparser": "*",
     "koa-router": "*",
+    "koa-marko": "*",
+    "marko": "*",
     "pg": "*"
   }
 }

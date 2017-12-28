@@ -2,14 +2,22 @@
 const Router = require('koa-router');
 const router = new Router();
 
+const marko = require('koa-marko');
+
 // ** Query declerations **//
 const queries = require('../../db/queries');
 
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+const singleCustomerTemplate = require('./templates/customer.marko');
+
+
+router.use(marko());
+
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/customers')
+
 
 
 
@@ -50,10 +58,10 @@ router.get('/:id', async (ctx) => {
     );
 
     if (dataCustomer.length) {
-      ctx.body = {
+      ctx.render(singleCustomerTemplate, {
         status: 'success',
         customer: dataCustomer
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

@@ -8,6 +8,15 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+// ** Marko decleration ** //
+const marko = require('koa-marko');
+
+// ** Marko template/view declerations ** //
+const singleInvoiceTimestampTemplate = require('./templates/invoice_timestamp.marko');
+
+// ** Explicitly tell router to use marko ** //
+router.use(marko());
+
 // Route prefix 'http://domain/api/v1/invoices'
 router.prefix('/api/v1/invoices')
 
@@ -25,11 +34,11 @@ router.get('/:id/timestamps', async (ctx) => {
       whereReference
     );
 
-    if (dataTimestamps.length) {
-      ctx.body = {
+    if (dataInvoiceTimestamps.length) {
+      ctx.render(singleInvoiceTimestampTemplate, {
         status: 'success',
         timestamp: dataInvoiceTimestamps
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

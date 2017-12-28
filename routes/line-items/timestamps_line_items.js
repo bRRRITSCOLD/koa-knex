@@ -8,6 +8,15 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+const marko = require('koa-marko');
+
+// ** Marko template/view declerations ** //
+const singleLineItemTimestampTemplate = require('./templates/line_item_timestamp.marko');
+
+// ** Explicitly tell router to use marko ** //
+router.use(marko());
+
+
 // Route prefix 'http://domain/api/v1/invoices'
 router.prefix('/api/v1/line-items')
 
@@ -25,10 +34,10 @@ router.get('/:id/timestamps', async (ctx) => {
       whereReference
     );
     if (dataLineItemTimestamps.length) {
-      ctx.body = {
+      ctx.render(singleLineItemTimestampTemplate, {
         status: 'success',
         timestamp: dataLineItemTimestamps
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

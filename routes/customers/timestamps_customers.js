@@ -8,6 +8,16 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+// ** Marko decleration ** //
+const marko = require('koa-marko');
+
+// ** Marko template/view declerations ** //
+const singleCustomerTimestampTemplate = require('./templates/customer_timestamp.marko');
+
+// ** Explicitly tell router to use marko ** //
+router.use(marko());
+
+
 // Route prefix 'http://domain/api/v1/customers'
 router.prefix('/api/v1/customers')
 
@@ -26,10 +36,10 @@ router.get('/:id/timestamps', async (ctx) => {
     );
 
     if (dataCustomerTimestamps.length) {
-      ctx.body = {
+      ctx.render(singleCustomerTimestampTemplate, {
         status: 'success',
         timestamp: dataCustomerTimestamps
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {

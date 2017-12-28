@@ -8,6 +8,12 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
+const marko = require('koa-marko');
+
+const singleProductTemplate = require('./templates/product.marko');
+
+router.use(marko());
+
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/products')
 
@@ -46,12 +52,11 @@ router.get('/:id', async (ctx) => {
       selectReference,
       whereReference
     );
-
     if (dataProduct.length) {
-      ctx.body = {
+      ctx.render(singleProductTemplate, {
         status: 'success',
         product: dataProduct
-      };
+      });
     } else {
       ctx.status = 404;
       ctx.body = {
