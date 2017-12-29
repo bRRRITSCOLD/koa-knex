@@ -1,0 +1,35 @@
+<form action="/api/v1/invoices" method="post">
+  <fieldset>
+    <legend> Create Invoice</legend>
+    <div>
+      <label>
+        Customer ID: <input type="number" step=".01" name="customer_id">
+      </label>
+    </div>
+    <div>
+      <label>
+        Products Total (Before Tax): <input type="number" step=".01" name="line_items_total">
+      </label>
+    </div>
+    <div>
+      <label>
+        Additional Fees: <input type="number" step=".01" name="additional_fees">
+      </label>
+    </div>
+    <div>
+      <label>
+        Tax Rate: <input type="number" step=".01" name="tax_rate">
+      </label>
+    </div>
+    <div>
+      <label>
+        Sub-Total: <input type="number" step=".01" name="sub_total">
+      </label>
+    </div>
+    <div>
+      <label>
+        Submit <input type="submit">
+      </label>
+    </div>
+  </fieldset>
+</form>

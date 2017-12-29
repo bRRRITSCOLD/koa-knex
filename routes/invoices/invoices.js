@@ -12,8 +12,9 @@ const tables = require('../../db/tables');
 const marko = require('koa-marko');
 
 // ** Marko template/view declerations ** //
-const allInvoicesTemplate = require('./templates/invoices.marko');
-const singleInvoiceTemplate = require('./templates/invoice.marko');
+const allInvoicesTemplate = require('./templates/invoices/index.marko');
+const singleInvoiceTemplate = require('./templates/invoice/index.marko');
+const singleInvoiceCreateTemplate = require('./templates/create/index.marko');
 
 // ** Explicitly tell router to use marko ** //
 router.use(marko());
@@ -21,7 +22,19 @@ router.use(marko());
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/invoices')
 
+
 // ** Router methods decleration ** //
+// ** Router GET /create ** //
+router.get('/create', async (ctx) => {
+  try {
+    ctx.render(singleInvoiceCreateTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // ** Router GET / ** //
 router.get('/', async (ctx) => {
   try {

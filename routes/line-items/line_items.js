@@ -11,14 +11,26 @@ const tables = require('../../db/tables');
 
 const marko = require('koa-marko');
 
-const singleLineItemTemplate = require('./templates/line_item.marko');
+const allLineItemsTemplate = require('./templates/line-items/index.marko');
+const singleLineItemTemplate = require('./templates/line-item/index.marko');
+const singleLineItemCreateTemplate = require('./templates/create/index.marko');
 
 router.use(marko());
 
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/line-items')
 
-
+// ** Router methods decleration ** //
+// ** Router GET /create ** //
+router.get('/create', async (ctx) => {
+  try {
+    ctx.render(singleLineItemCreateTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 // ** Router methods decleration ** //
 // ** Router GET / ** //
@@ -31,10 +43,10 @@ router.get('/', async (ctx) => {
       selectReference
     );
 
-    ctx.body = {
+    ctx.render(allLineItemsTemplate, {
       status: 'success',
       lineItems: dataLineItems
-    };
+    });
   } catch (err) {
     console.log(err)
   }

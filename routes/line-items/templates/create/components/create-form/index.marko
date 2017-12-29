@@ -1,0 +1,35 @@
+<form action="/api/v1/line-items" method="post">
+  <fieldset>
+    <legend> Create Line Item</legend>
+    <div>
+      <label>
+        Invoice ID: <input type="number" name="invoice_id">
+      </label>
+    </div>
+    <div>
+      <label>
+        Product ID: <input type="number" name="product_id">
+      </label>
+    </div>
+    <div>
+      <label>
+        Quanity: <input type="number" step=".01" name="quantity">
+      </label>
+    </div>
+    <div>
+      <label>
+        Discount: <input type="number" step=".01" name="discount">
+      </label>
+    </div>
+    <div>
+      <label>
+        Total: <input type="number" step=".01" name="total">
+      </label>
+    </div>
+    <div>
+      <label>
+        Submit <input type="submit">
+      </label>
+    </div>
+  </fieldset>
+</form>

@@ -11,20 +11,20 @@ const tables = require('../../db/tables');
 const marko = require('koa-marko');
 
 // ** Marko template/view declerations ** //
-const singleProductTimestampTemplate = require('./templates/product_timestamp.marko');
+const singleProductTimestampTemplate = require('./templates/timestamp/index.marko');
 
 // ** Explicitly tell router to use marko ** //
 router.use(marko());
 
 // Route prefix 'http://domain/api/v1/customers'
-router.prefix('/api/v1/products')
+router.prefix('/api/v1/products/timestamps')
 
-router.get('/:id/timestamps', async (ctx) => {
+router.get('/:product_id', async (ctx) => {
   try {
     let selectReference = '*';
 
     let whereReference = await {
-      product_id: parseInt(ctx.params.id)
+      product_id: parseInt(ctx.params.product_id)
     };
 
     const dataProductTimestamps = await queries.timestamps.getSingleTimestamp(

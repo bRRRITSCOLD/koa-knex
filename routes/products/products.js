@@ -10,13 +10,26 @@ const tables = require('../../db/tables');
 
 const marko = require('koa-marko');
 
-const allProductsTemplate = require('./templates/products.marko');
-const singleProductTemplate = require('./templates/product.marko');
+const allProductsTemplate = require('./templates/products/index.marko');
+const singleProductTemplate = require('./templates/product/index.marko');
+const singleProductCreateTemplate = require('./templates/create/index.marko');
 
 router.use(marko());
 
 // ** Router prefix decleration ** //
 router.prefix('/api/v1/products')
+
+// ** Router methods decleration ** //
+// ** Router GET /create ** //
+router.get('/create', async (ctx) => {
+  try {
+    ctx.render(singleProductCreateTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 // ** Router methods decleration ** //
 // ** Router GET / ** //

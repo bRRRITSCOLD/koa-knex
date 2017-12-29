@@ -10,9 +10,9 @@ const queries = require('../../db/queries');
 // ** Table declerations ** //
 const tables = require('../../db/tables');
 
-const allCustomersTemplate = require('./templates/customers.marko');
-const singleCustomerTemplate = require('./templates/customer.marko');
-
+const allCustomersTemplate = require('./templates/customers/index.marko');
+const singleCustomerTemplate = require('./templates/customer/index.marko');
+const singleCustomerCreateTemplate = require('./templates/create/index.marko');
 
 router.use(marko());
 
@@ -21,6 +21,17 @@ router.prefix('/api/v1/customers')
 
 
 
+// ** Router methods decleration ** //
+// ** Router GET / ** //
+router.get('/create', async (ctx) => {
+  try {
+    ctx.render(singleCustomerCreateTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 // ** Router methods decleration ** //
 // ** Router GET / ** //
@@ -121,8 +132,6 @@ router.get('/:id/invoices', async (ctx) => {
     console.log(err)
   }
 })
-
-
 
 // ** Router POST / ** //
 router.post('/', async (ctx) => {
@@ -267,5 +276,6 @@ router.delete('/:id', async (ctx) => {
     };
   }
 })
+
 
 module.exports = router;
