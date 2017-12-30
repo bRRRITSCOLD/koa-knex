@@ -42,11 +42,13 @@ Server listening on port: 1337
 
  H) Now using your favorite browser you may travel to https://localhost:1337 and use any of the endpoints given below. I suggest using Postman as it allows the ability to easily switch between all the built-in http method urls.
 
-###### YOU WILL NOT BE ABLE TO USE ANYTHING BUT GET REQUESTS UNLESS USING POSTMAN OR SOMETHING SIMILAR. THE BELOW LINKS ARE ONLY FORMATTED AS GET REQUESTS EVEN IF PLACED AFTER POST, PUT, OR DELETE. THESE ARE SIMPLY FOR REFERENCE!!!!
-
 Customers:
 
 * GET: https://localhost:1337/api/v1/customers
+* GET: https://localhost:1337/api/v1/customers?
+* GET: https://localhost:1337/api/v1/customers/create
+* GET: https://localhost:1337/api/v1/customers/search
+* GET: https://localhost:1337/api/v1/customers/search-query?id=:id
 * GET: https://localhost:1337/api/v1/customers/:id
 * GET: https://localhost:1337/api/v1/customers/:id/invoices
 * GET: https://localhost:1337/api/v1/customers/:id/timestamps
@@ -57,6 +59,10 @@ Customers:
 Products:
 
 * GET: https://localhost:1337/api/v1/products
+* GET: https://localhost:1337/api/v1/products?
+* GET: https://localhost:1337/api/v1/products/create
+* GET: https://localhost:1337/api/v1/products/search
+* GET: https://localhost:1337/api/v1/products/search-query?id=:id
 * GET: https://localhost:1337/api/v1/products/:id
 * GET: https://localhost:1337/api/v1/products/:id/timestamps
 * POST: https://localhost:1337/api/v1/products
@@ -66,6 +72,10 @@ Products:
 Line Items:
 
 * GET: https://localhost:1337/api/v1/line-items
+* GET: https://localhost:1337/api/v1/line-items?
+* GET: https://localhost:1337/api/v1/line-items/create
+* GET: https://localhost:1337/api/v1/line-items/search
+* GET: https://localhost:1337/api/v1/line-items/search-query?id=:id
 * GET: https://localhost:1337/api/v1/line-items/:id
 * GET: https://localhost:1337/api/v1/line-items/:id/timestamps
 * POST: https://localhost:1337/api/v1/line-items
@@ -75,6 +85,10 @@ Line Items:
 Invoices:
 
 * GET: https://localhost:1337/api/v1/invoices
+* GET: https://localhost:1337/api/v1/invoices?
+* GET: https://localhost:1337/api/v1/invoices/create
+* GET: https://localhost:1337/api/v1/invoices/search
+* GET: https://localhost:1337/api/v1/invoices/search-query?id=:id
 * GET: https://localhost:1337/api/v1/invoices/:id
 * GET: https://localhost:1337/api/v1/invoices/:id/timestamps
 * POST: https://localhost:1337/api/v1/invoices
