@@ -17,7 +17,6 @@ const singleLineItemTimestampTemplate = require('./templates/timestamp/index.mar
 router.use(marko());
 
 
-// Route prefix 'http://domain/api/v1/invoices'
 router.prefix('/api/v1/line-items/timestamps')
 
 router.get('/:line_item_id', async (ctx) => {

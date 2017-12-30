@@ -13,7 +13,7 @@ const tables = require('../../db/tables');
 const allCustomersTemplate = require('./templates/customers/index.marko');
 const singleCustomerTemplate = require('./templates/customer/index.marko');
 const singleCustomerCreateTemplate = require('./templates/create/index.marko');
-
+const singleAllCustomerCustomersSearchTemplate = require('./templates/search/index.marko');
 router.use(marko());
 
 // ** Router prefix decleration ** //
@@ -33,7 +33,48 @@ router.get('/create', async (ctx) => {
   }
 })
 
-// ** Router methods decleration ** //
+// ** Router GET / ** //
+router.get('/search', async (ctx) => {
+  try {
+    ctx.render(singleAllCustomerCustomersSearchTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// ** Router GET /search-query ** //
+router.get('/search-query', async (ctx) => {
+  try {
+    let selectReference = '*';
+
+    let whereReference = await {
+      id: parseInt(ctx.request.query.id)
+    };
+    const dataCustomer = await queries.objects.getSingleObject(
+      tables.customers.customersTable,
+      selectReference,
+      whereReference
+    );
+
+    if (dataCustomer.length) {
+      ctx.render(singleCustomerTemplate, {
+        status: 'success',
+        customer: dataCustomer
+      });
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: 'error',
+        message: 'That customer does not exist. Please retry your entry using another customer\'s id.'
+      };
+    }
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // ** Router GET / ** //
 router.get('/', async (ctx) => {
   try {
@@ -43,7 +84,6 @@ router.get('/', async (ctx) => {
       tables.customers.customersTable,
       selectReference
     );
-
     ctx.render(allCustomersTemplate, {
       status: 'success',
       customers: dataCustomers
@@ -62,7 +102,6 @@ router.get('/:id', async (ctx) => {
     let whereReference = await {
       id: parseInt(ctx.params.id)
     };
-
     const dataCustomer = await queries.objects.getSingleObject(
       tables.customers.customersTable,
       selectReference,

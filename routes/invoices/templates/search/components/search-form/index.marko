@@ -1,0 +1,27 @@
+<div>
+  <form action="/api/v1/invoices/search-query" method="get">
+    <fieldset>
+      <legend>Search For Single Invoice</legend>
+      <div>
+        <label>
+          By ID: <input type="number" name="id">
+        </label>
+      </div>
+      <div>
+        <label>
+          Search <input type="submit">
+        </label>
+      </div>
+    </fieldset>
+  </form>
+  <form action="/api/v1/invoices" method="get">
+    <fieldset>
+      <legend>Search For All Invoices</legend>
+      <div>
+        <label>
+          Search <input type="submit">
+        </label>
+      </div>
+    </fieldset>
+  </form>
+</div>

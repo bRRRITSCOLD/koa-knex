@@ -14,6 +14,7 @@ const marko = require('koa-marko');
 const allLineItemsTemplate = require('./templates/line-items/index.marko');
 const singleLineItemTemplate = require('./templates/line-item/index.marko');
 const singleLineItemCreateTemplate = require('./templates/create/index.marko');
+const singleAllLineItemLineItemsSearchTemplate = require('./templates/search/index.marko');
 
 router.use(marko());
 
@@ -32,7 +33,48 @@ router.get('/create', async (ctx) => {
   }
 })
 
-// ** Router methods decleration ** //
+// ** Router GET /search ** //
+router.get('/search', async (ctx) => {
+  try {
+    ctx.render(singleAllLineItemLineItemsSearchTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// ** Router GET /search-query ** //
+router.get('/search-query', async (ctx) => {
+  try {
+    let selectReference = '*';
+
+    let whereReference = await {
+      id: parseInt(ctx.request.query.id)
+    };
+    const dataLineItem = await queries.objects.getSingleObject(
+      tables.lineItems.lineItemsTable,
+      selectReference,
+      whereReference
+    );
+
+    if (dataLineItem.length) {
+      ctx.render(singleLineItemTemplate, {
+        status: 'success',
+        lineItem: dataLineItem
+      });
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: 'error',
+        message: 'That line item does not exist. Please retry your entry using another customer\'s id.'
+      };
+    }
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // ** Router GET / ** //
 router.get('/', async (ctx) => {
   try {

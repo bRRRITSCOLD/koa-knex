@@ -13,6 +13,7 @@ const marko = require('koa-marko');
 const allProductsTemplate = require('./templates/products/index.marko');
 const singleProductTemplate = require('./templates/product/index.marko');
 const singleProductCreateTemplate = require('./templates/create/index.marko');
+const singleAllProductProductsSearchTemplate = require('./templates/search/index.marko');
 
 router.use(marko());
 
@@ -31,7 +32,48 @@ router.get('/create', async (ctx) => {
   }
 })
 
-// ** Router methods decleration ** //
+// ** Router GET /search ** //
+router.get('/search', async (ctx) => {
+  try {
+    ctx.render(singleAllProductProductsSearchTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// ** Router GET /search-query ** //
+router.get('/search-query', async (ctx) => {
+  try {
+    let selectReference = '*';
+
+    let whereReference = await {
+      id: parseInt(ctx.request.query.id)
+    };
+    const dataProduct = await queries.objects.getSingleObject(
+      tables.products.productsTable,
+      selectReference,
+      whereReference
+    );
+
+    if (dataProduct.length) {
+      ctx.render(singleProductTemplate, {
+        status: 'success',
+        product: dataProduct
+      });
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: 'error',
+        message: 'That product does not exist. Please retry your entry using another customer\'s id.'
+      };
+    }
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // ** Router GET / ** //
 router.get('/', async (ctx) => {
   try {

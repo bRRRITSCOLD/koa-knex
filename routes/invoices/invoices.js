@@ -15,6 +15,7 @@ const marko = require('koa-marko');
 const allInvoicesTemplate = require('./templates/invoices/index.marko');
 const singleInvoiceTemplate = require('./templates/invoice/index.marko');
 const singleInvoiceCreateTemplate = require('./templates/create/index.marko');
+const singleAllInvoiceInvoicesSearchTemplate = require('./templates/search/index.marko');
 
 // ** Explicitly tell router to use marko ** //
 router.use(marko());
@@ -30,6 +31,48 @@ router.get('/create', async (ctx) => {
     ctx.render(singleInvoiceCreateTemplate, {
       status: 'success'
     });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// ** Router GET /search ** //
+router.get('/search', async (ctx) => {
+  try {
+    ctx.render(singleAllInvoiceInvoicesSearchTemplate, {
+      status: 'success'
+    });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// ** Router GET /search-query ** //
+router.get('/search-query', async (ctx) => {
+  try {
+    let selectReference = '*';
+
+    let whereReference = await {
+      id: parseInt(ctx.request.query.id)
+    };
+    const dataInvoice = await queries.objects.getSingleObject(
+      tables.invoices.invoicesTable,
+      selectReference,
+      whereReference
+    );
+
+    if (dataInvoice.length) {
+      ctx.render(singleInvoiceTemplate, {
+        status: 'success',
+        invoice: dataInvoice
+      });
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: 'error',
+        message: 'That invoice does not exist. Please retry your entry using another customer\'s id.'
+      };
+    }
   } catch (err) {
     console.log(err)
   }
